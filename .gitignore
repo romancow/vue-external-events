@@ -16,6 +16,7 @@ tmp/
 # distribution files
 build/
 dist/
+types/
 
 # environment variable files
 *.env
