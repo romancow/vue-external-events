@@ -39,8 +39,7 @@ export default class ParentMixin extends ExternalEventsMixin {
 	}
 
 	$onceExternal(event: string, callback: Function) {
-		Utilities.Array.ensure(event)
-			.forEach(channel => ExternalEvents.add(this[LISTENERS_KEY], channel, callback, true))
+		ExternalEvents.add(this[LISTENERS_KEY], event, callback, true)
 		return this
 	}
 
