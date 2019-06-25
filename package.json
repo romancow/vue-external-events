@@ -1,0 +1,22 @@
+{
+  "name": "@romancow/vue-external-events",
+  "version": "1.0.0",
+  "description": "Vue mixin and decorators for sending & receiving \"external\" events (such as Electron inter-process communication or parent window messaging)",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adque/editor.git"
+  },
+  "author": "Sean Wilson",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.2"
+  },
+  "peerDependencies": {
+    "electron": ">=1"
+  }
+}

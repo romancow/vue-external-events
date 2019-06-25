@@ -1,0 +1,21 @@
+# node & npm related stuff
+node_modules/
+node_modules
+.nvmrc
+
+# error logs
+npm-debug.log*
+yarn-error.log
+
+# anything in the temp folder
+tmp/
+
+# Visual Studio Code settings
+.vscode/settings.json
+
+# distribution files
+build/
+dist/
+
+# environment variable files
+*.env

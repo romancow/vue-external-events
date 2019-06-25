@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		// if using webpack 2+ or rollup, to leverage tree shaking:
+		"module": "es2015",
+		"moduleResolution": "node",
+		// enable stricter type checking options
+		"strict": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"removeComments": true,
+		// this aligns with Vue's browser support
+		"target": "es5",
+		"experimentalDecorators": true
+	},
+	"include": [
+		"./src/**/*"
+	]
+}
