@@ -21,7 +21,7 @@ export default class ElectronMixin extends ExternalEventsMixin {
 
 	$offExternal(event?: string | string[], callback?: Function) {
 		if (event == null)
-			ipcRenderer.removeAllListeners()
+			ipcRenderer.removeAllListeners(undefined as any)
 		else {
 			const remover = (callback == null) ?
 				(ev: string) => ipcRenderer.removeAllListeners(ev) :
