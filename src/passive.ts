@@ -1,29 +1,39 @@
 import Vue from 'vue'
+import Component from 'vue-class-component'
 import * as Utilities from './utilities'
 
-export default abstract class ExternalEventsMixin extends Vue {
+@Component
+export default class PassiveMixin extends Vue {
 
 	protected $ipcRenderer?: Electron.IpcRenderer
 
-	abstract $onExternal(event: string | string[], callback: Function) : this
+	$onExternal(event: string | string[], callback: Function) {
+		return this
+	}
 
-	abstract $onceExternal(event: string, callback: Function) : this
+	$onceExternal(event: string, callback: Function) {
+		return this
+	}
 
-	abstract $offExternal(event?: string | string[], callback?: Function): this
+	$offExternal(event?: string | string[], callback?: Function) {
+		return this
+	}
 
-	abstract $emitExternal(event: string, ...args: any[]): this
+	$emitExternal(event: string, ...args: any[]) {
+		return this
+	}
 
 	beforeCreate() {
 		const { $on, $once, $off, $emit } = this
 		Utilities.Object.assign(this, {
-			$on(this: ExternalEventsMixin, event: string | string[], callback: Function) {
+			$on(this: PassiveMixin, event: string | string[], callback: Function) {
 				const { external, internal } = Utilities.VueEvent.separate(event)
 				this.$onExternal(external, callback)
 				if (internal != null) $on.call(this, internal, callback)
 				return this
 			},
 
-			$once(this: ExternalEventsMixin, event: string, callback: Function) {
+			$once(this: PassiveMixin, event: string, callback: Function) {
 				const {
 					external: [ext] = [undefined],
 					internal
@@ -33,7 +43,7 @@ export default abstract class ExternalEventsMixin extends Vue {
 				return this
 			},
 
-			$off(this: ExternalEventsMixin, event?: string | string[], callback?: Function) {
+			$off(this: PassiveMixin, event?: string | string[], callback?: Function) {
 				const { external = undefined, internal = undefined } = (event != null) ?
 					Utilities.VueEvent.separate(event) : {}
 				this.$offExternal(external, callback)
@@ -42,7 +52,7 @@ export default abstract class ExternalEventsMixin extends Vue {
 				return this
 			},
 
-			$emit(this: ExternalEventsMixin, event: string, ...args: any[]) {
+			$emit(this: PassiveMixin, event: string, ...args: any[]) {
 				if (Utilities.VueEvent.isExternal(event))
 					this.$emitExternal(event, ...args)
 				else

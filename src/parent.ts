@@ -1,5 +1,5 @@
 import Component from 'vue-class-component'
-import ExternalEventsMixin from './external'
+import PassiveMixin from './passive'
 import * as Utilities from './utilities'
 
 type ExternalEventsMessageData = { channel: string, args?: any[] }
@@ -26,7 +26,7 @@ const messageListenerOptions = { capture: false, passive: true }
 
 
 @Component
-export default class ParentMixin extends ExternalEventsMixin {
+export default class ParentMixin extends PassiveMixin {
 
 	static targetOrigin = '*'
 

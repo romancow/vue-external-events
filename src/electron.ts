@@ -1,10 +1,10 @@
 import { ipcRenderer } from 'electron'
 import Component from 'vue-class-component'
-import ExternalEventsMixin from './external'
+import PassiveMixin from './passive'
 import * as Utilities from './utilities'
 
 @Component
-export default class ElectronMixin extends ExternalEventsMixin {
+export default class ElectronMixin extends PassiveMixin {
 
 	protected $ipcRenderer = ipcRenderer
 

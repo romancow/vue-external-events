@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Vue mixin and decorators for sending & receiving \"external\" events (such as Electron inter-process communication or parent window messaging)",
   "main": "build/electron.js",
-  "types": "./types/index,js",
+  "types": "./types/passive.d.ts",
   "scripts": {
     "build": "tsc -p .",
     "prepare": "npm run build"
@@ -18,7 +18,9 @@
     "vue-class-component": "^7.1.0"
   },
   "devDependencies": {
-    "typescript": "^3.5.2"
+    "electron": "^5.0.5",
+    "typescript": "^3.5.2",
+    "vue": "2.5.16"
   },
   "peerDependencies": {
     "electron": "^5.0.5",
