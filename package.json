@@ -5,6 +5,7 @@
   "main": "build/electron.js",
   "types": "./types/passive.d.ts",
   "scripts": {
+    "clean": "rimraf ./build/* ./dist/* ./types/*",
     "build": "tsc -p .",
     "prepare": "npm run build"
   },
@@ -19,19 +20,20 @@
     "typescript",
     "decorator"
   ],
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/"
-	},
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "dependencies": {
     "vue-class-component": "^7.1.0"
   },
   "devDependencies": {
     "electron": "^5.0.5",
+    "rimraf": "^3.0.0",
     "typescript": "^3.5.2",
     "vue": "2.5.16"
   },
   "peerDependencies": {
-    "electron": "^5.0.5",
-    "vue": "^2.6.10"
+    "electron": "^1.7.9",
+    "vue": "^2.1.10"
   }
 }
