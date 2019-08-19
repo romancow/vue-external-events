@@ -1,41 +1,41 @@
 {
-  "name": "@romancow/vue-external-events",
-  "version": "1.0.0",
-  "description": "Vue mixin and decorators for sending & receiving \"external\" events (such as Electron inter-process communication or parent window messaging)",
-  "main": "build/electron.js",
-  "types": "./types/passive.d.ts",
-  "scripts": {
-    "clean": "rimraf ./build/* ./dist/* ./types/*",
-    "build": "tsc -p .",
-    "prepare": "npm run build",
-    "release": "npm run clean && npm run build && rollup -c"
-  },
-  "repository": "git://github.com/romancow/vue-external-events.git",
-  "author": "Sean Wilson",
-  "license": "MIT",
-  "keywords": [
-    "vue",
-    "electron",
-    "events",
-    "external",
-    "typescript",
-    "decorator"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "dependencies": {
-    "vue-class-component": "^7.1.0"
-  },
-  "devDependencies": {
-    "electron": "^5.0.5",
-    "rimraf": "^3.0.0",
-    "rollup": "^1.16.2",
-    "typescript": "^3.5.2",
-    "vue": "2.5.16"
-  },
-  "peerDependencies": {
-    "electron": "^1.7.9",
-    "vue": "^2.1.10"
-  }
+	"name": "@romancow/vue-external-events",
+	"version": "1.0.0",
+	"description": "Vue mixin and decorators for sending & receiving \"external\" events (such as Electron inter-process communication or parent window messaging)",
+	"main": "build/electron.js",
+	"types": "./types/passive.d.ts",
+	"scripts": {
+		"clean": "rimraf ./build/* ./dist/* ./types/*",
+		"build": "tsc -p .",
+		"prepare": "npm run build",
+		"release": "npm run clean && npm run build && rollup -c"
+	},
+	"repository": "git://github.com/romancow/vue-external-events.git",
+	"author": "Sean Wilson",
+	"license": "MIT",
+	"keywords": [
+		"vue",
+		"electron",
+		"events",
+		"external",
+		"typescript",
+		"decorator"
+	],
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"dependencies": {
+		"vue-class-component": "^7.1.0"
+	},
+	"devDependencies": {
+		"electron": "^5.0.5",
+		"rimraf": "^3.0.0",
+		"rollup": "^1.16.2",
+		"typescript": "^3.5.2",
+		"vue": "2.5.16"
+	},
+	"peerDependencies": {
+		"electron": "^1.7.9",
+		"vue": "^2.1.10"
+	}
 }
