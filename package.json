@@ -8,12 +8,20 @@
     "build": "tsc -p .",
     "prepare": "npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/adque/editor.git"
-  },
+  "repository": "git://github.com/romancow/vue-external-events.git",
   "author": "Sean Wilson",
   "license": "MIT",
+  "keywords": [
+    "vue",
+    "electron",
+    "events",
+    "external",
+    "typescript",
+    "decorator"
+  ],
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
   "dependencies": {
     "vue-class-component": "^7.1.0"
   },
