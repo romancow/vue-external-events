@@ -7,7 +7,8 @@
   "scripts": {
     "clean": "rimraf ./build/* ./dist/* ./types/*",
     "build": "tsc -p .",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "release": "npm run clean && npm run build && rollup -c"
   },
   "repository": "git://github.com/romancow/vue-external-events.git",
   "author": "Sean Wilson",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "electron": "^5.0.5",
     "rimraf": "^3.0.0",
+    "rollup": "^1.16.2",
     "typescript": "^3.5.2",
     "vue": "2.5.16"
   },
