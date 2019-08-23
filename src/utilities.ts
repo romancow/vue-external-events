@@ -30,6 +30,18 @@ namespace _String {
 		return fn(searchString)
 	}
 
+	export function dasherize(str: string) {
+		return str
+			.split(/([A-Z][a-z\d]*)|[\W_]/)
+			.filter(x => !!x)
+			.join('-')
+			.toLowerCase()
+	}
+
+	export function isString(str: any): str is string {
+		return (typeof str === 'string')
+	}
+
 }
 
 namespace _Object {
@@ -43,6 +55,36 @@ namespace _Object {
 		return fn(target, source)
 	}
 
+	export function select<T extends Object, K extends keyof T>(obj: T, keys: K[]) {
+		const pick = {} as Pick<T, K>
+		return keys.reduce((p, key) => (p[key] = obj[key], pick), pick)
+	}
+
+	export function forEach<T extends Object>(obj: T, fn: <K extends keyof T>(val: T[K], key: K, obj: T) => void) {
+		Object.keys(obj).forEach((key: keyof T & string) => fn(obj[key], key, obj))
+	}
+
+}
+
+namespace _Function {
+
+	export function isFunction(fn: any): fn is Function {
+		return (typeof fn === 'function')
+	}
+
+}
+
+namespace _Promise {
+
+	export function isPromise(promise: any): promise is { then: Function } {
+		return (promise != null) && _Function.isFunction(promise.then)
+	}
+
+}
+
+namespace _Symbol {
+
+	export const isSupported = (typeof Symbol === 'function')
 }
 
 namespace VueEvent {
@@ -68,5 +110,8 @@ export {
 	_Array as Array,
 	_String as String,
 	_Object as Object,
+	_Function as Function,
+	_Promise as Promise,
+	_Symbol as Symbol,
 	VueEvent
 }
