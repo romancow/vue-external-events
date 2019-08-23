@@ -89,19 +89,24 @@ namespace _Symbol {
 
 namespace VueEvent {
 
-	export function isExternal(event: string) {
-		return _String.endsWith(event, '.external')
+	export function isExternal(event: string, namespace: string) {
+		return _String.endsWith(event, `.${namespace}`)
 	}
 
-	export function separate(event: string | string[]) {
+	export function separate(event: string | string[], namespace: string) {
 		const { external = [], internal = [] } = _Array.groupBy(
 			_Array.ensure(event),
-			ev => isExternal(ev) ? 'external' : 'internal'
+			ev => isExternal(ev, namespace) ? 'external' : 'internal'
 		)
 		return {
-			external: external.map(ev => ev.substring(0, ev.length - 9)),
+			external: external.map(ev => removeNamespace(ev)),
 			internal: (internal.length > 1) ? internal : internal[0]
 		}
+	}
+
+	export function removeNamespace(event: string) {
+		const index = event.lastIndexOf('.')
+		return (index > 0) ? event.substring(0, index) : event
 	}
 
 }
