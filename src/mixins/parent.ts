@@ -1,5 +1,6 @@
 import Component from 'vue-class-component'
-import PassiveMixin, { ExternalEventsHandler } from './passive'
+import * as Utilities from '../utilities'
+import PassiveMixin from './passive'
 
 type ExternalEventsMessageData = { channel: string, args?: any[] }
 type ExternalEvents = {
@@ -20,7 +21,7 @@ namespace ExternalEvents {
 	}
 }
 
-const LISTENERS_KEY = ((typeof Symbol !== 'function') ? '_eventsExternal' : Symbol('_eventsExternal')) as '_eventsExternal'
+const LISTENERS_KEY: unique symbol = <any>(Utilities.Symbol.isSupported ? Symbol(' _eventsExternal') : ' _eventsExternal')
 const messageListenerOptions = { capture: false, passive: true }
 
 
@@ -28,34 +29,40 @@ const messageListenerOptions = { capture: false, passive: true }
 export default class ParentMixin extends PassiveMixin {
 
 	static targetOrigin = '*'
+	private [LISTENERS_KEY]: ExternalEvents
 
-	static $externalEventsHandler: ExternalEventsHandler = {
-		on(events: string[], callback: Function) {
-			events.forEach(channel => ExternalEvents.add(this[LISTENERS_KEY], channel, callback))
-		},
-		once(event: string, callback: Function) {
-			ExternalEvents.add(this[LISTENERS_KEY], event, callback, true)
-		},
-		off(events?: string[], callback?: Function) {
-			const externalEvents = this[LISTENERS_KEY]
-			if (events == null)
-				externalEvents.channels = {}
-			else {
-				const { channels } = externalEvents
-				const all = (callback == null)
-				events.forEach(channel =>
-					channels[channel] = all ? [] :
-						channels[channel].filter(({callback: cb}) => cb != callback)
-				)
-			}
-		},
-		emit(event: string, ...args: any[]) {
-			const message: ExternalEventsMessageData = { channel: event, args }
-			window.parent.postMessage(message, ParentMixin.targetOrigin)
-		}
+	$onExternal(event: string | string[], callback: Function) {
+		const listeners = this[LISTENERS_KEY]
+		Utilities.Array.ensure(event)
+			.forEach(channel => ExternalEvents.add(listeners, channel, callback))
+		return this
 	}
 
-	private [LISTENERS_KEY]: ExternalEvents
+	$onceExternal(event: string, callback: Function) {
+		const listeners = this[LISTENERS_KEY]
+		ExternalEvents.add(listeners, event, callback, true)
+		return this
+	}
+
+	$offExternal(event?: string | string[], callback?: Function) {
+		const listeners = this[LISTENERS_KEY]
+		if (event == null)
+			listeners.channels = {}
+		else {
+			const { channels } = listeners
+			Utilities.Array.ensure(event).forEach(channel =>
+				channels[channel] = (callback == null) ? [] :
+					channels[channel].filter(({callback: cb}) => cb != callback)
+			)
+		}
+		return this
+	}
+
+	$emitExternal(event: string, ...args: any[]) {
+		const message: ExternalEventsMessageData = { channel: event, args }
+		window.parent.postMessage(message, ParentMixin.targetOrigin)
+		return this
+	}
 
 	created() {
 		const { listener } = this[LISTENERS_KEY] = {
@@ -77,3 +84,4 @@ export default class ParentMixin extends PassiveMixin {
 		window.parent.removeEventListener('message', listener, messageListenerOptions)
 	}
 }
+
