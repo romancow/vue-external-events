@@ -8,7 +8,7 @@ type OnExternalDecoratorFactory =
 	((options?: OnExternalOptions) => OnExternalMethodDecorator) |
 	((event?: string, options?: OnExternalOptions) => OnExternalMethodDecorator)
 
-export function OnExternal(mixin: typeof PassiveMixin) {
+export default function OnExternal(mixin: typeof PassiveMixin) {
 	const { $onExternal, $onceExternal } = mixin.prototype
 	return function (event?: string | OnExternalOptions, options?: OnExternalOptions) {
 		const [ev, opts = {}] = Utilities.String.isString(event) ?

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import PassiveMixin from '../mixins/passive'
 import * as Utilities from '../utilities'
 
-export function EmitExternal(mixin: typeof PassiveMixin) {
+export default function EmitExternal(mixin: typeof PassiveMixin) {
 	const { $emitExternal } = mixin.prototype
 	return function (event?: string) {
 		return function (target: Vue, propertyKey: string, descriptor: TypedPropertyDescriptor<Function>) {
