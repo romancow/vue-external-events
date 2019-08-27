@@ -1,5 +1,8 @@
 // import pkg from './package.json';
 import resolve from 'rollup-plugin-node-resolve'
+import { terser } from 'rollup-plugin-terser'
+
+const plugins = [ resolve(), terser() ]
 
 const cjs = ['electron', 'passive', 'parent'].map(name => ({
 	input: `es6/${name}.js`,
@@ -10,7 +13,7 @@ const cjs = ['electron', 'passive', 'parent'].map(name => ({
 		name: "VueExternalEvents",
 		format: 'cjs'
 	},
-	plugins: [ resolve() ]
+	plugins
 }))
 
 const iife = ['passive', 'parent'].map(name => ({
@@ -23,7 +26,7 @@ const iife = ['passive', 'parent'].map(name => ({
 		format: 'iife',
 		globals: { vue: 'Vue' }
 	},
-	plugins: [ resolve() ]
+	plugins
 }))
 
 export default [...cjs, ...iife]

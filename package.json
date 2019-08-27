@@ -6,7 +6,12 @@
 	"module": "es6/electron.js",
 	"browser": "iife/parent.js",
 	"types": "./types/passive.d.ts",
-	"files": ["es6/*.js", "cjs/*.js", "iife/*.js", "types"],
+	"files": [
+		"es6/*.js",
+		"cjs/*.js",
+		"iife/*.js",
+		"types"
+	],
 	"scripts": {
 		"clean": "rimraf ./es6 ./cjs ./iife ./types",
 		"prebuild": "npm run clean",
@@ -37,6 +42,7 @@
 		"rimraf": "^3.0.0",
 		"rollup": "^1.16.2",
 		"rollup-plugin-node-resolve": "^5.2.0",
+		"rollup-plugin-terser": "^5.1.1",
 		"typescript": "^3.5.2",
 		"vue": "2.5.16"
 	},
