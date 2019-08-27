@@ -5,7 +5,7 @@
 	"main": "cjs/electron.js",
 	"module": "es6/electron.js",
 	"browser": "iife/parent.js",
-	"types": "./types/passive.d.ts",
+	"types": "types/electron.d.ts",
 	"files": [
 		"es6/*.js",
 		"cjs/*.js",
