@@ -15,9 +15,11 @@ tmp/
 
 # distribution files
 es6/
+cjs/
+iife/
+types/
 build/
 dist/
-types/
 
 # environment variable files
 *.env

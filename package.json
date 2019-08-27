@@ -2,13 +2,18 @@
 	"name": "@romancow/vue-external-events",
 	"version": "1.0.0",
 	"description": "Vue mixin and decorators for sending & receiving \"external\" events (such as Electron inter-process communication or parent window messaging)",
-	"main": "build/electron.js",
+	"main": "cjs/electron.js",
+	"module": "es6/electron.js",
+	"browser": "iife/parent.js",
 	"types": "./types/passive.d.ts",
+	"files": ["es6/*.js", "cjs/*.js", "iife/*.js", "types"],
 	"scripts": {
-		"clean": "rimraf ./build/* ./dist/* ./types/*",
-		"build": "tsc -p .",
-		"prepare": "npm run build",
-		"release": "npm run clean && npm run build && rollup -c"
+		"clean": "rimraf ./es6 ./cjs ./iife ./types",
+		"prebuild": "npm run clean",
+		"build:es6": "tsc -p .",
+		"build:rollup": "rollup -c",
+		"build": "npm run build:es6 && npm run build:rollup",
+		"prepare": "npm run build"
 	},
 	"repository": "git://github.com/romancow/vue-external-events.git",
 	"author": "Sean Wilson",
