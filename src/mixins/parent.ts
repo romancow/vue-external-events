@@ -1,7 +1,6 @@
 import Component from 'vue-class-component'
 import * as Utilities from '../utilities'
 import PassiveMixin from './passive'
-import { getDecorators } from '../decorators'
 
 type ExternalEventsMessageData = { channel: string, args?: any[] }
 type ExternalEvents = {
@@ -85,6 +84,3 @@ export default class ParentMixin extends PassiveMixin {
 		window.parent.removeEventListener('message', listener, messageListenerOptions)
 	}
 }
-
-const { OnExternal, EmitExternal } = getDecorators(PassiveMixin)
-export { OnExternal, EmitExternal }

@@ -2,7 +2,6 @@ import Component from 'vue-class-component'
 import { ipcRenderer } from 'electron'
 import * as Utilities from '../utilities'
 import PassiveMixin from './passive'
-import { getDecorators } from '../decorators'
 
 @Component
 export default class ElectronMixin extends PassiveMixin {
@@ -35,6 +34,3 @@ export default class ElectronMixin extends PassiveMixin {
 		return this
 	}
 }
-
-const { OnExternal, EmitExternal } = getDecorators(PassiveMixin)
-export { OnExternal, EmitExternal }

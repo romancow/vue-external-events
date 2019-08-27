@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import * as Utilities from '../utilities'
-import { getDecorators } from '../decorators'
 
 const VueEvent = Utilities.VueEvent
 const DEFAULT_EXTERNAL_EVENT_NAMESPACE = 'external'
@@ -85,6 +84,3 @@ export default class PassiveMixin extends Vue {
 		}
 	}
 }
-
-const { OnExternal, EmitExternal } = getDecorators(PassiveMixin)
-export { OnExternal, EmitExternal }
