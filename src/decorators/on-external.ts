@@ -3,10 +3,9 @@ import PassiveMixin from '../mixins/passive'
 import * as Utilities from '../utilities'
 
 type OnExternalOptions = { once?: boolean }
-type OnExternalMethodDecorator = (target: Vue, propertyKey: string, descriptor: TypedPropertyDescriptor<Function>) => void
-type OnExternalDecoratorFactory =
-	((options?: OnExternalOptions) => OnExternalMethodDecorator) |
-	((event?: string, options?: OnExternalOptions) => OnExternalMethodDecorator)
+type OnExternalDecoratorFn =
+	((options?: OnExternalOptions) => MethodDecorator) |
+	((event?: string, options?: OnExternalOptions) => MethodDecorator)
 
 export default function OnExternal(mixin: typeof PassiveMixin) {
 	const { $onExternal, $onceExternal } = mixin.prototype
@@ -19,5 +18,5 @@ export default function OnExternal(mixin: typeof PassiveMixin) {
 			const channel = ev || Utilities.String.dasherize(propertyKey)
 			fn.call(target, channel, descriptor.value!)
 		}
-	} as OnExternalDecoratorFactory
+	} as OnExternalDecoratorFn
 }

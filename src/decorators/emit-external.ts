@@ -18,6 +18,6 @@ export default function EmitExternal(mixin: typeof PassiveMixin) {
 					fnResult.then(emit)
 				else emit(fnResult)
 			}
-		}
+		} as MethodDecorator
 	}
 }
