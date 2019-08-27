@@ -2,9 +2,11 @@
 	"compilerOptions": {
 		"declaration": true,
 		"declarationDir": "./types",
+		"sourceMap": true,
 		"experimentalDecorators": true,
-		"module": "ES6",
+		"module": "es6",
 		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
 		// enable stricter type checking options
 		"strict": true,
 		"noImplicitAny": true,
@@ -13,7 +15,7 @@
 		"removeComments": true,
 		// this aligns with Vue's browser support
 		"target": "es5",
-		"outDir": "build",
+		"outDir": "./es6",
 	},
 	"include": [
 		"./src/**/*"
