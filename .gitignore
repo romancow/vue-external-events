@@ -15,8 +15,7 @@ tmp/
 
 # distribution files
 es6/
-cjs/
-iife/
+umd/
 types/
 build/
 dist/

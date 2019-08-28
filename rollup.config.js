@@ -4,29 +4,17 @@ import { terser } from 'rollup-plugin-terser'
 
 const plugins = [ resolve(), terser() ]
 
-const cjs = ['electron', 'passive', 'parent'].map(name => ({
-	input: `es6/${name}.js`,
-	external: ['electron', 'vue', 'vue-class-component'],
-	context: 'window',
-	output: {
-		dir: "cjs",
-		name: "VueExternalEvents",
-		format: 'cjs'
-	},
-	plugins
-}))
-
-const iife = ['passive', 'parent'].map(name => ({
+export default ['electron', 'parent', 'passive'].map(name => ({
 	input: `es6/mixins/${name}.js`,
-	external: ['vue'],
+	external: ['electron', 'vue'],
 	context: 'window',
 	output: {
-		dir: "iife",
+		file: `umd/vue-external-events.${name}.js`,
 		name: "VueExternalEvents",
-		format: 'iife',
-		globals: { vue: 'Vue' }
+		format: 'umd',
+		globals: { vue: 'Vue', electron: 'electron' },
+		sourcemap: true,
+		sourcemapExcludeSources: true
 	},
 	plugins
 }))
-
-export default [...cjs, ...iife]
