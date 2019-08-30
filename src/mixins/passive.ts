@@ -1,5 +1,6 @@
-import Vue from 'vue'
+import Vue, { ComponentOptions } from 'vue'
 import Component from 'vue-class-component'
+import { VueClass } from 'vue-class-component/lib/declarations';
 import * as Utilities from '../utilities'
 
 const VueEvent = Utilities.VueEvent
@@ -54,7 +55,7 @@ const getEventMethodOverrides = () => {
 
 
 @Component
-export default class PassiveMixin extends Vue {
+class PassiveMixin extends Vue {
 
 	static namespace: string | boolean = false
 
@@ -84,3 +85,11 @@ export default class PassiveMixin extends Vue {
 		}
 	}
 }
+
+declare module PassiveMixin {
+	export const options: ComponentOptions<PassiveMixin>
+}
+
+export default PassiveMixin
+
+export type ExternalEventsMixin<T extends PassiveMixin = PassiveMixin> = VueClass<T> & { options: ComponentOptions<T> }

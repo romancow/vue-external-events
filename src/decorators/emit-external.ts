@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import PassiveMixin from '../mixins/passive'
+import { ExternalEventsMixin } from '../mixins/passive'
 import * as Utilities from '../utilities'
 
-export default function EmitExternal(mixin: typeof PassiveMixin) {
-	const { $emitExternal } = mixin.prototype
+export default function EmitExternal(mixin: ExternalEventsMixin) {
+	const { $emitExternal } = mixin.options.methods!
 	return function (event?: string) {
 		return function (target: Vue, propertyKey: string, descriptor: TypedPropertyDescriptor<Function>) {
 			const channel = event || Utilities.String.dasherize(propertyKey)

@@ -1,11 +1,11 @@
 import OnExternal from './on-external'
 import EmitExternal from './emit-external'
-import PassiveMixin from '../mixins/passive'
+import { ExternalEventsMixin } from '../mixins/passive'
 
-export function getDecorators(mixinType: typeof PassiveMixin) {
+export function getDecorators(mixin: ExternalEventsMixin) {
 	return {
-		OnExternal: OnExternal(mixinType),
-		EmitExternal: EmitExternal(mixinType)
+		OnExternal: OnExternal(mixin),
+		EmitExternal: EmitExternal(mixin)
 	}
 }
 

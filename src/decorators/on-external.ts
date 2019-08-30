@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import PassiveMixin from '../mixins/passive'
+import { ExternalEventsMixin } from '../mixins/passive'
 import * as Utilities from '../utilities'
 
 type OnExternalOptions = { once?: boolean }
@@ -7,8 +7,8 @@ type OnExternalDecoratorFn =
 	((options?: OnExternalOptions) => MethodDecorator) |
 	((event?: string, options?: OnExternalOptions) => MethodDecorator)
 
-export default function OnExternal(mixin: typeof PassiveMixin) {
-	const { $onExternal, $onceExternal } = mixin.prototype
+export default function OnExternal(mixin: ExternalEventsMixin) {
+	const { $onExternal, $onceExternal } = mixin.options.methods!
 	return function (event?: string | OnExternalOptions, options?: OnExternalOptions) {
 		const [ev, opts = {}] = Utilities.String.isString(event) ?
 			[event, options] : [undefined, event]
