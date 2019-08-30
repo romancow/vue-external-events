@@ -40,14 +40,12 @@ There are currently 3 different event targets suported:
 	<dd>Does nothing. Useful when you want to communicate with Electron in that context, but don't want it to do anything in a browser context without having to change any of your code.</dd>
 </dl>
 
-With webpack, you should be able to import the package normally (e.g. `import * as ExternalEvents from '@romancow/vue-external-events'`), and by default the "electron" version will be used if your target is `electron-renderer` and the "passive" version used if your target is `web`. This is set by the "module" and "browser" entries in the `package.json`, so hopefully other bundlers do somethign similar.
-
-You can also import the version you want manually:
+By default the electron version is imported. If you want to use one of the otherss, you can import it manually:
 ```javascript
 import * as ExternalEvents from `@romancow/vue-external-events/es6/parent`
 ```
 
-Or swap them out with an alias:
+Or swap them out with an alias (example is for webpack, but other bundlers should have something similar):
 ```javascript
 module.exports = {
 	/* your webpack config settings */
@@ -56,11 +54,12 @@ module.exports = {
 
 		alias: {
 			vue$: 'vue/dist/vue.esm.js',
-			'@romancow/vue-external-events': '@romancow/vue-external-events/es6/parent'
+			'@romancow/vue-external-events': '@romancow/vue-external-events/es6/passive'
 		}
 	}
 }
 ```
+This should allow you to easily change which one is being used based on your compilation target, e.g. use the default "electron" module with the "electron-renderer" target and alias the "passive" one for the "web" target.
 
 ## Usage
 

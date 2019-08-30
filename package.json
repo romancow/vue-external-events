@@ -4,7 +4,7 @@
 	"description": "Vue mixin and decorators for sending & receiving \"external\" events (such as Electron inter-process communication or parent window messaging)",
 	"main": "es6/electron.js",
 	"module": "es6/electron.js",
-	"browser": "es6/passive.js",
+	"browser": "es6/electron.js",
 	"types": "types/electron.d.ts",
 	"files": [
 		"es6/**/*.js",
