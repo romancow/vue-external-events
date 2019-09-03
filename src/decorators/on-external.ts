@@ -16,7 +16,7 @@ export default function OnExternal(mixin: ExternalEventsMixin) {
 
 		return function (target: Vue, propertyKey: string, descriptor: TypedPropertyDescriptor<Function>) {
 			const channel = ev || Utilities.String.dasherize(propertyKey)
-			fn.call(target, channel, descriptor.value!)
+			fn.call(target as any, channel, descriptor.value!)
 		}
 	} as OnExternalDecoratorFn
 }

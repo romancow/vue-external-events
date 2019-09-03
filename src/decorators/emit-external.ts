@@ -11,13 +11,13 @@ export default function EmitExternal(mixin: ExternalEventsMixin) {
 			descriptor.value = function(...args: any[]) {
 				const emit = (result: any) => {
 					if (result !== undefined) args.unshift(result)
-					$emitExternal.call(target, channel, ...args)
+					$emitExternal.call(target as any, channel, ...args)
 				}
 				const fnResult = fn.apply(this, args)
 				if (Utilities.Promise.isPromise(fnResult))
 					fnResult.then(emit)
 				else emit(fnResult)
-				return fnResult
+				return
 			}
 		} as MethodDecorator
 	}

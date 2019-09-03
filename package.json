@@ -1,6 +1,6 @@
 {
 	"name": "@romancow/vue-external-events",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Vue mixin and decorators for sending & receiving \"external\" events (such as Electron inter-process communication or parent window messaging)",
 	"main": "es6/electron.js",
 	"module": "es6/electron.js",

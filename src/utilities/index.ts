@@ -61,7 +61,8 @@ namespace _Object {
 	}
 
 	export function forEach<T extends Object>(obj: T, fn: <K extends keyof T>(val: T[K], key: K, obj: T) => void) {
-		Object.keys(obj).forEach((key: keyof T & string) => fn(obj[key], key, obj))
+		const keys = Object.keys(obj) as (keyof T)[]
+		keys.forEach(key => fn(obj[key], key, obj))
 	}
 
 }
