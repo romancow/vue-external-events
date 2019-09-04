@@ -17,7 +17,7 @@ export default function EmitExternal(mixin: ExternalEventsMixin) {
 				if (Utilities.Promise.isPromise(fnResult))
 					fnResult.then(emit)
 				else emit(fnResult)
-				return
+				return fnResult
 			}
 		} as MethodDecorator
 	}
