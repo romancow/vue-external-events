@@ -36,7 +36,7 @@
 		"vue-class-component": "^7.1.0"
 	},
 	"devDependencies": {
-		"electron": "^5.0.5",
+		"electron": "^7.2.4",
 		"rimraf": "^3.0.0",
 		"rollup": "^1.16.2",
 		"rollup-plugin-node-resolve": "^5.2.0",
